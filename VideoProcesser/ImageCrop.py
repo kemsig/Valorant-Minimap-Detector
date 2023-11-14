@@ -1,10 +1,10 @@
 import cv2
 
-LOTUS = {
-        'x': 37,  # :3 kyun!
-        'y': 54,
-        'width': 225,
-        'height': 199
+ASCENT = {
+        'x': 45,
+        'y': 34,
+        'width': 222,
+        'height': 233
     }
 def crop_video_at_timestamp(video_path, output_image_path, timestamp, map):
     x = map['x']
@@ -26,15 +26,18 @@ def crop_video_at_timestamp(video_path, output_image_path, timestamp, map):
     if ret:
         # Crop the frame to the specified minimap region
         cropped_frame = frame[y:y+height, x:x+width]
-        sized = cv2.resize(cropped_frame, (1000, 1000), interpolation=cv2.INTER_CUBIC)
-        cv2.imwrite(output_image_path, cropped_frame)
+
+        gray =cv2.cvtColor(cropped_frame, cv2.COLOR_BGR2GRAY)
+        gaus = cv2.GaussianBlur(gray, (5, 5), 0)
+        image = cv2.Canny(gaus , 100, 200, apertureSize=3)
+        cv2.imwrite(output_image_path, image)
 
     video.release()
 
 # Parameters for the minimap region and timestamp
-video_path = 'y2mate.is - Loud vs Drx _ Valorant Champions 2023-ZQk2HM5GsIc-720p-1698720721.mp4'
-output_image_path = 'noninterp.png'
-timestamp_to_crop = 3075  # Timestamp in seconds
+video_path = 'Video/fullraw_minimap.mp4'
+output_image_path = 'ASCENT.png'
+timestamp_to_crop = 6490  # Timestamp in seconds
 
 # Crop the video at the specified timestamp and export as an image
-crop_video_at_timestamp(video_path, output_image_path, timestamp_to_crop, LOTUS)
+crop_video_at_timestamp(video_path, output_image_path, timestamp_to_crop, ASCENT)
