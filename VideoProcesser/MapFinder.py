@@ -32,7 +32,7 @@ target_frame_number = int(desired_start_time * fps)
 video.set(cv2.CAP_PROP_POS_FRAMES, target_frame_number)
 
 # Output video
--fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 out = cv2.VideoWriter('minimap_seen_video.mp4', fourcc, fps, (width, height))
 
 x = 45

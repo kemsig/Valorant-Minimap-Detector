@@ -13,7 +13,7 @@ width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 # Desired start time
-desired_start_time = 7219  # Replace this with the timestamp from which you want to start processing
+desired_start_time = 7230  # Replace this with the timestamp from which you want to start processing
 
 # Calculate the target frame number based on the desired start time
 target_frame_number = int(desired_start_time * fps)
@@ -26,9 +26,10 @@ fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 out = cv2.VideoWriter('minimap_seen_video.mp4', fourcc, fps, (width, height))
 
 # Create background subtractor using KNN method
-background_subtractor = cv2.createBackgroundSubtractorKNN()
+background_subtractor = cv2.createBackgroundSubtractorKNN(550, 200, False)
 #cv2.imshow("template", background_subtractor.apply(minimap_template))
 # Iterate through the video frames
+count = 0;
 while video.isOpened():
     ret, frame = video.read()
     if not ret:
@@ -70,10 +71,12 @@ while video.isOpened():
         out.write(frame)
 
     # Show the processed frames in different windows
+
     cv2.imshow('Original Frame', frame)
     cv2.imshow('Background Subtraction', fg_mask)
     cv2.imshow('gaus', gauscolor)
     cv2.imshow('edges', canny_mask)
+
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
