@@ -14,7 +14,7 @@ width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 # Desired start time
-desired_start_time = 7750  # Replace this with the timestamp from which you want to start processing
+desired_start_time = 7212  # Replace this with the timestamp from which you want to start processing
 
 # Calculate the target frame number based on the desired start time
 target_frame_number = int(desired_start_time * fps)
@@ -41,6 +41,7 @@ def template_matcher(write_frame, compare_frame, threshold, template, match_type
         return True
     return False
 
+
 #Get the stats of the video being played
 detect_count = 0
 total_frame_count = 0
@@ -51,6 +52,20 @@ failed_count = 0
 end_frame = target_frame_number
 # Create background subtractor using KNN method
 background_subtractor = cv2.createBackgroundSubtractorKNN(550, 200, False)
+
+#implementation for frame correcting
+false_negative_frame = []
+saved_frames = []
+smoothing_frame_threshold = 25 # change according to taste
+def smooth_frame(frame):
+    global saved_frames
+    global false_negative_frame
+    #saved_frames.append(frame)
+    if len(saved_frames) <= smoothing_frame_threshold:
+        false_negative_frame += saved_frames
+    saved_frames = []
+
+
 # Iterate through the video frames
 while video.isOpened():
     ret, frame = video.read()
@@ -64,17 +79,26 @@ while video.isOpened():
     fg_mask = ie.apply_KNN(frame, background_subtractor)
 
     if template_matcher(frame, canny_mask, 0.2, canny_template, cv2.TM_CCOEFF_NORMED, (0, 255, 0)):
+        smooth_frame(target_frame_number)
         detect_count += 1
         canny_count += 1
+        failed_frames = 0
     elif template_matcher(frame, fg_mask, 0.4, KNN_template, cv2.TM_CCOEFF_NORMED, (0,0,255)):
+        smooth_frame(target_frame_number)
         detect_count += 1
         KNN_count += 1
+        failed_frames = 0
     elif template_matcher(frame, color_frame, 0.4, color_template, cv2.TM_CCOEFF_NORMED, (255,0,0)):
+        smooth_frame(target_frame_number)
         detect_count += 1
         color_count += 1
+        failed_frames = 0
     else:
         failed_count+=1
+        print(f"failed: {failed_count}")
+        saved_frames.append(target_frame_number)
 
+    target_frame_number +=1
 
     # Show the processed frames in different windows
     cv2.imshow('Original Frame', frame)
@@ -91,8 +115,11 @@ video.release()
 out.release()
 cv2.destroyAllWindows()
 
+
 print('VIDEO STATS')
 print(f'Percent Accuracy: {detect_count/total_frame_count * 100}%')
+print(f'Smoothing Percent Accuracy: {(detect_count +len(false_negative_frame))/total_frame_count * 100}%')
+print(false_negative_frame)
 print(f'Frames Failed: {failed_count}')
 print(f'Canny Count+%: {canny_count} | {canny_count/total_frame_count * 100}%')
 print(f'KNN Count+%: {KNN_count} | {KNN_count/total_frame_count * 100}%')

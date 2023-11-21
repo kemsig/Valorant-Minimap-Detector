@@ -6,7 +6,6 @@ def apply_canny(frame):
     gaus = cv2.GaussianBlur(gray, (5, 5), 0)
     return cv2.Canny(gaus, 100, 200, apertureSize=3)
 
-
 def apply_color(frame):
     # Define the range of gray colors in HSV
     new_frame = copy.deepcopy(frame)
