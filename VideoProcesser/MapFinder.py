@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import ImageEffects as ie
+
 # Load the minimap templates and Video
 canny_template = cv2.imread('MapTemplates/ASCENT_CANNY.png', cv2.IMREAD_GRAYSCALE)
 KNN_template = cv2.imread('MapTemplates/ASCENT_KNN.png', cv2.IMREAD_GRAYSCALE)
@@ -14,7 +15,7 @@ width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 # Desired start time
-desired_start_time = 7212  # Replace this with the timestamp from which you want to start processing
+desired_start_time = 7240  # Replace this with the timestamp from which you want to start processing
 
 # Calculate the target frame number based on the desired start time
 target_frame_number = int(desired_start_time * fps)
@@ -55,22 +56,16 @@ background_subtractor = cv2.createBackgroundSubtractorKNN(550, 200, False)
 false_negative_frame = []
 saved_frames = []
 smoothing_frame_threshold = 45 # change according to taste
-
-
-
 def smooth_frame(frame):
     global saved_frames,false_negative_frame
     if len(saved_frames) <= smoothing_frame_threshold:
         false_negative_frame += saved_frames
-        print('appended frames')
     saved_frames = []
     false_negative_frame.append(frame)
     for output_frame in false_negative_frame:
         cv2.imshow('Original Frame', output_frame)
         out.write(output_frame)
     false_negative_frame = []
-
-
 
 # Iterate through the video frames
 while video.isOpened():
@@ -102,6 +97,7 @@ while video.isOpened():
     else:
         failed_count+=1
         saved_frames.append(frame)
+        print(f'frames unsaved: {len(saved_frames)}')
 
     target_frame_number +=1
 
@@ -110,6 +106,7 @@ while video.isOpened():
     cv2.imshow('Color Frame', color_frame)
     cv2.imshow('Background Subtraction', fg_mask)
     cv2.imshow('edges', canny_mask)
+
     total_frame_count += 1
     end_frame += 1
 
