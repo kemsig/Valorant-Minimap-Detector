@@ -7,7 +7,7 @@ canny_template = cv2.imread('MapTemplates/ASCENT_CANNY.png', cv2.IMREAD_GRAYSCAL
 KNN_template = cv2.imread('MapTemplates/ASCENT_KNN.png', cv2.IMREAD_GRAYSCALE)
 color_template = cv2.imread('MapTemplates/ASCENT_COLOR.png', cv2.IMREAD_COLOR)
 
-video = cv2.VideoCapture('Video/fullraw_minimap.mp4')
+video = cv2.VideoCapture('Video/minimap_crop.mp4')
 
 # Variables for video properties
 fps = video.get(cv2.CAP_PROP_FPS)
@@ -15,7 +15,7 @@ width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 # Desired start time
-desired_start_time = 7240  # Replace this with the timestamp from which you want to start processing
+desired_start_time = 0  # Replace this with the timestamp from which you want to start processing
 
 # Calculate the target frame number based on the desired start time
 target_frame_number = int(desired_start_time * fps)

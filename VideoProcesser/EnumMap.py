@@ -2,10 +2,10 @@ from enum import Enum
 
 class Map(Enum):
     LOTUS = {
-        'x': 37,  # :3 kyun!
-        'y': 54,
-        'width': 225,
-        'height': 199
+        'x': 35,  # :3 kyun!
+        'y': 53,
+        'width': 227,
+        'height': 202
     }
 
     ASCENT = {

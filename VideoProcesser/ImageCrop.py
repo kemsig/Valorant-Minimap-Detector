@@ -8,7 +8,12 @@ ASCENT = {
         'height': 233
     }
 
-
+LOTUS = {
+        'x': 37,
+        'y': 54,
+        'width': 225,
+        'height': 199
+    }
 def crop_video_at_timestamp(video_path, output_image_path, timestamp, map):
     x = map['x']
     y = map['y']
@@ -39,12 +44,10 @@ def crop_video_at_timestamp(video_path, output_image_path, timestamp, map):
 
 # Parameters for the minimap region and timestamp
 video_path = 'Video/fullraw_minimap.mp4'
-output_image_path = 'Temp/'
-timestamp_to_crop = 7300  # Timestamp in seconds
+output_image_path = 'Temp/LOTUS.png'
+timestamp_to_crop = 0  # Timestamp in seconds
 
-times = [216721, 216722, 216723, 216724, 216725, 216726, 216727, 216728, 216729, 216730, 216731, 216969, 216970, 216971, 216972, 216973, 216974, 216975, 216976, 216977, 216978, 216979, 216980, 216981, 216982]
+
 # Crop the video at the specified timestamp and export as an image
-for time in times:
-    op = f'Temp/{time}.png'
-    crop_video_at_timestamp(video_path, op, time, ASCENT)
+crop_video_at_timestamp(video_path, output_image_path, timestamp_to_crop, LOTUS)
 
