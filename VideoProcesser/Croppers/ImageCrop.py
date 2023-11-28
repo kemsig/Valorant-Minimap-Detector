@@ -43,7 +43,7 @@ def crop_video_at_timestamp(video_path, output_image_path, timestamp, map):
     video.release()
 
 # Parameters for the minimap region and timestamp
-video_path = 'Video/fullraw_minimap.mp4'
+video_path = '../Video/fullraw_minimap.mp4'
 output_image_path = 'Temp/LOTUS.png'
 timestamp_to_crop = 0  # Timestamp in seconds
 

@@ -31,8 +31,16 @@ def crop_video(video_path, output_path, map):
             break
 
         cropped_frame = frame[y:y+height, x:x+width]
-        cropped_score = frame[7:47, 528:751]
+
         if cropped_frame.shape[0] > 0 and cropped_frame.shape[1] > 0:
+            canny = ie.apply_canny(cropped_frame)
+            color = ie.apply_color(cropped_frame)
+            KNN = ie.apply_KNN(cropped_frame, bg_sub)
+            print(num)
+            cv2.imwrite(f'Temp/Canny/{num}.png', canny)
+            cv2.imwrite(f'Temp/Color/{num}.png', color)
+            cv2.imwrite(f'Temp/KNN/{num}.png', KNN)
+            num +=1
             out.write(cropped_frame)
 
 

@@ -3,11 +3,11 @@ import numpy as np
 import ImageEffects as ie
 
 # Load the minimap templates and Video
-canny_template = cv2.imread('MapTemplates/ASCENT_CANNY.png', cv2.IMREAD_GRAYSCALE)
-KNN_template = cv2.imread('MapTemplates/ASCENT_KNN.png', cv2.IMREAD_GRAYSCALE)
-color_template = cv2.imread('MapTemplates/ASCENT_COLOR.png', cv2.IMREAD_COLOR)
+canny_template = cv2.imread('../MapTemplates/ASCENT_CANNY.png', cv2.IMREAD_GRAYSCALE)
+KNN_template = cv2.imread('../MapTemplates/ASCENT_KNN.png', cv2.IMREAD_GRAYSCALE)
+color_template = cv2.imread('../MapTemplates/ASCENT_COLOR.png', cv2.IMREAD_COLOR)
 
-video = cv2.VideoCapture('Video/fullraw_minimap.mp4')
+video = cv2.VideoCapture('../Video/fullraw_minimap.mp4')
 
 # Variables for video properties
 fps = video.get(cv2.CAP_PROP_FPS)
@@ -61,7 +61,7 @@ false_negative_frame = []
 saved_frames = []
 smoothing_frame_threshold = 5  # change according to taste
 
-out = cv2.VideoWriter('minimap_seen_video.mp4', fourcc, fps, (width, height))
+out = cv2.VideoWriter('../minimap_seen_video.mp4', fourcc, fps, (width, height))
 def smooth_frame(frame):
     global saved_frames
     global false_negative_frame

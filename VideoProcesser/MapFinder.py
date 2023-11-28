@@ -3,11 +3,11 @@ import numpy as np
 import ImageEffects as ie
 
 # Load the minimap templates and Video
-canny_template = cv2.imread('MapTemplates/ASCENT_CANNY.png', cv2.IMREAD_GRAYSCALE)
-KNN_template = cv2.imread('MapTemplates/ASCENT_KNN.png', cv2.IMREAD_GRAYSCALE)
-color_template = cv2.imread('MapTemplates/ASCENT_COLOR.png', cv2.IMREAD_COLOR)
+canny_template = cv2.imread('MapTemplates/LOTUS_CANNY.png', cv2.IMREAD_GRAYSCALE)
+KNN_template = cv2.imread('MapTemplates/LOTUS_KNN.png', cv2.IMREAD_GRAYSCALE)
+color_template = cv2.imread('MapTemplates/LOTUS_COLOR.png', cv2.IMREAD_COLOR)
 
-video = cv2.VideoCapture('Video/minimap_crop.mp4')
+video = cv2.VideoCapture('Video/fullraw_minimap.mp4')
 
 # Variables for video properties
 fps = video.get(cv2.CAP_PROP_FPS)
