@@ -7,7 +7,7 @@ canny_template = cv2.imread('MapTemplates/LOTUS_CANNY.png', cv2.IMREAD_GRAYSCALE
 KNN_template = cv2.imread('MapTemplates/LOTUS_KNN.png', cv2.IMREAD_GRAYSCALE)
 color_template = cv2.imread('MapTemplates/LOTUS_COLOR.png', cv2.IMREAD_COLOR)
 
-video = cv2.VideoCapture('Video/fullraw_minimap.mp4')
+video = cv2.VideoCapture('Video/output_combined.mp4')
 
 # Variables for video properties
 fps = video.get(cv2.CAP_PROP_FPS)

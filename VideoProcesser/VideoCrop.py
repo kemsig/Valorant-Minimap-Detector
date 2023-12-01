@@ -20,9 +20,8 @@ def crop_video(video_path, output_path, map):
     fps = video.get(cv2.CAP_PROP_FPS)
     frame_width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    bg_sub = cv2.createBackgroundSubtractorKNN(550, 200, False)
     num = 1
-    out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+    out = cv2.VideoWriter(output_path, fourcc, fps, (751-528, 40))
     print("Cropping Start")
     while True:
         ret, frame = video.read()
@@ -30,10 +29,10 @@ def crop_video(video_path, output_path, map):
         if not ret:
             break
 
-        cropped_frame = frame[y:y+height, x:x+width]
+        #cropped_frame = frame[y:y+height, x:x+width]
         cropped_score = frame[7:47, 528:751]
-        if cropped_frame.shape[0] > 0 and cropped_frame.shape[1] > 0:
-            out.write(cropped_frame)
+        if cropped_score.shape[0] > 0 and cropped_score.shape[1] > 0:
+            out.write(cropped_score)
 
 
     video.release()
@@ -48,7 +47,7 @@ minimap_width = 225  # Width of the minimap
 minimap_height = 199  # Height of the minimap
 
 # Path to your input video and desired output path for the cropped video
-input_video_path = 'Video/y2mate.is - Loud vs Drx _ Valorant Champions 2023-ZQk2HM5GsIc-720p-1700701607.mp4'
+input_video_path = 'Video/Loud vs Drx _ Valorant Champions 2023.mp4'
 output_video_path = 'Video/minis.mp4'
 
 # Crop the video based on the minimap coordinates and dimensions

@@ -35,7 +35,7 @@ def crop_video_at_timestamp(video_path, output_image_path, timestamp, map):
     if ret:
         # Crop the frame to the specified minimap region
         other = cv2.imread('MapTemplates/120.png')
-        cropped_frame = frame[y:y+height, x:x+width]
+        cropped_frame = frame
 
 
         cv2.imwrite(output_image_path, cropped_frame)
