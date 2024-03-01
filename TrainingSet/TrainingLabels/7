@@ -1,0 +1,248 @@
+{
+  "id": 7,
+  "created_username": " kamaniti@ucsd.edu, 1",
+  "created_ago": "0\u00a0minutes",
+  "completed_by": {
+    "id": 1,
+    "first_name": "",
+    "last_name": "",
+    "email": "kamaniti@ucsd.edu"
+  },
+  "task": {
+    "id": 11806,
+    "data": {
+      "image": "/data/local-files/?d=PycharmProjects%5CCompValML%5CTrainingSet%5CTrainingSetRandom%5CLOTUS_frame1036.jpg"
+    },
+    "meta": {},
+    "created_at": "2023-12-11T06:41:37.474715Z",
+    "updated_at": "2023-12-11T06:41:37.474715Z",
+    "is_labeled": true,
+    "overlap": 1,
+    "inner_id": 3,
+    "total_annotations": 1,
+    "cancelled_annotations": 0,
+    "total_predictions": 0,
+    "comment_count": 0,
+    "unresolved_comment_count": 0,
+    "last_comment_updated_at": null,
+    "project": 3,
+    "updated_by": null,
+    "file_upload": null,
+    "comment_authors": []
+  },
+  "result": [
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 66.44326779476926,
+        "y": 17.01534170153417,
+        "width": 6.3576109897434065,
+        "height": 6.555090655509069,
+        "rotation": 0,
+        "rectanglelabels": [
+          "viper blue"
+        ]
+      },
+      "id": "POjIvdtAKg",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 84.39411113828828,
+        "y": 23.291492329149232,
+        "width": 5.609656755655934,
+        "height": 6.4156206415620645,
+        "rotation": 0,
+        "rectanglelabels": [
+          "kj blue"
+        ]
+      },
+      "id": "BuO52bOeBg",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 90.5025205991625,
+        "y": 29.14923291492329,
+        "width": 4.3630663655101785,
+        "height": 5.439330543933056,
+        "rotation": 0,
+        "rectanglelabels": [
+          "bomb"
+        ]
+      },
+      "id": "yVNKgG10WB",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 89.38053097345133,
+        "y": 38.49372384937239,
+        "width": 5.4849977166413595,
+        "height": 6.136680613668062,
+        "rotation": 0,
+        "rectanglelabels": [
+          "viper red"
+        ]
+      },
+      "id": "ZjElxyIZKt",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 69.68443194643824,
+        "y": 42.81729428172943,
+        "width": 6.232951950728818,
+        "height": 7.1129707112970735,
+        "rotation": 0,
+        "rectanglelabels": [
+          "fade red"
+        ]
+      },
+      "id": "Ny8oRqYvIZ",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 86.26405499808692,
+        "y": 55.78800557880056,
+        "width": 4.238407326495604,
+        "height": 5.299860529986056,
+        "rotation": 0,
+        "rectanglelabels": [
+          "dead blue"
+        ]
+      },
+      "id": "5UtuWKvf_d",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 88.38317124946475,
+        "y": 59.9721059972106,
+        "width": 4.4877254045247525,
+        "height": 5.02092050209206,
+        "rotation": 0,
+        "rectanglelabels": [
+          "dead blue"
+        ]
+      },
+      "id": "djGiBTKzFc",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 84.89280556892658,
+        "y": 66.10878661087865,
+        "width": 4.612384443539327,
+        "height": 4.7419804741980585,
+        "rotation": 0,
+        "rectanglelabels": [
+          "dead red"
+        ]
+      },
+      "id": "d4lKSNg910",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 52.232137347107546,
+        "y": 6.4156206415620645,
+        "width": 4.363066365510171,
+        "height": 5.160390516039051,
+        "rotation": 0,
+        "rectanglelabels": [
+          "dead red"
+        ]
+      },
+      "id": "cPwdKJaGKT",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    },
+    {
+      "original_width": 226,
+      "original_height": 202,
+      "image_rotation": 0,
+      "value": {
+        "x": 88.60965823955773,
+        "y": 17.335634583653146,
+        "width": 3.24113501437897,
+        "height": 58.50601177146976,
+        "rotation": 22.92365398113367,
+        "rectanglelabels": [
+          "wall red"
+        ]
+      },
+      "id": "ISKTpLzdid",
+      "from_name": "label",
+      "to_name": "image",
+      "type": "rectanglelabels",
+      "origin": "manual"
+    }
+  ],
+  "was_cancelled": false,
+  "ground_truth": false,
+  "created_at": "2023-12-17T10:52:19.597578Z",
+  "updated_at": "2023-12-17T10:52:19.597578Z",
+  "draft_created_at": "2023-12-17T10:50:58.138165Z",
+  "lead_time": 91.272,
+  "import_id": null,
+  "last_action": null,
+  "project": 3,
+  "updated_by": 1,
+  "parent_prediction": null,
+  "parent_annotation": null,
+  "last_created_by": null
+}
