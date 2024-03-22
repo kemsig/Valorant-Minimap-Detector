@@ -4,7 +4,7 @@ import datetime
 import random
 import os
 
-def write_to_image(image, width, height, character_path, c_width, c_height):
+def write_to_image(image, width, height, character, c_width, c_height):
     # get random position for object
     x = random.randint(0, width - c_width)
     y = random.randint(0, height - c_height)
@@ -45,13 +45,13 @@ def generate_data_YOLO(name, image_path, out_image_path, out_label_path):
                 names.remove(picked_name)
                 
             # get a random image of the character
-           # get_rand_img(character)
+            get_rand_img(character)
                 
             write_to_image(
                 image=img,
                 width=width,
                 height=height,
-                character_path= "PLACEHOLDER",
+                character= "PLACEHOLDER",
                 c_width= "PLACEHOLDER",
                 c_height= "PLACEHOLDER"
             )

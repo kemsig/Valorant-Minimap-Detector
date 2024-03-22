@@ -51,7 +51,7 @@ def generate_data_YOLO(name, image_path, out_image_path, out_label_path):
                 image=img,
                 width=width,
                 height=height,
-                character_path= "PLACEHOLDER",
+                character_oath= "PLACEHOLDER",
                 c_width= "PLACEHOLDER",
                 c_height= "PLACEHOLDER"
             )
