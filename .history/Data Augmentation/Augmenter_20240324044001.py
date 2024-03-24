@@ -53,9 +53,8 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
                "bomb":bomb
             }
     
-    class_index = 0
     for class_name, int_value in classes.items():
-        print(f'Generating "{class_name}" with Index "{class_index} "{int_value}" times.')
+        print(f'Generating "{class_name}" "{int_value}" times.')
 
         names = ['fade', 'kj', 'raze', 'omen', 'viper']
         for count in range(int_value):
@@ -77,10 +76,6 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
             char_img_path = get_rand_img(char_choice)
             print(char_img_path)
             
-
-            '''
-            TODO: ADD BOUNDING BOX MANIPULATION
-            '''
             x_center, y_center, norm_width, norm_height = write_to_image(
                 main_image=main_img,
                 asset_image_path= char_img_path,
@@ -104,21 +99,17 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
                 x_center, y_center, norm_width, norm_height, m_width, m_height
             )
 
-            # append to label file
             print ('x_center, y_center, norm_width, norm_height', x_center, y_center, norm_width, norm_height)
-
-            output_file = os.path.join(out_label_path, f"{name}.txt")
-            with open(output_file, 'a') as f:
-                f.write(f"{class_index} {x_center} {y_center} {norm_width} {norm_height}\n")
-            # Iterate class index up
-            class_index += 1
-    
-    # save the image
-    cv2.imwrite(os.path.join(out_image_path, f'{name}.jpg'), main_img)
-    
             
-def generate_yolo_batch(count, background_path):
-    print('hello worlds')
 
+'''
+            # append to label file
+            output_file = os.path.join(out_label_path, f"{name}.txt")
+            
+            with open(output_file, 'a') as f:
+                f.write(f"{class_num} {x_center:.6f} {y_center:.6f} {norm_width:.6f} {norm_height:.6f}")
+    
+            # put character image on spot
+      '''
 
-generate_data_YOLO('test', 'Data Augmentation\\Backgrounds\\LOTUS_2.jpg', 'Data Augmentation', 'Data Augmentation')
+generate_data_YOLO('test', 'Data Augmentation\\Backgrounds\\LOTUS_2.jpg', '', '')

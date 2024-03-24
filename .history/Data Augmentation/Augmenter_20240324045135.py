@@ -77,10 +77,6 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
             char_img_path = get_rand_img(char_choice)
             print(char_img_path)
             
-
-            '''
-            TODO: ADD BOUNDING BOX MANIPULATION
-            '''
             x_center, y_center, norm_width, norm_height = write_to_image(
                 main_image=main_img,
                 asset_image_path= char_img_path,
@@ -117,8 +113,8 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
     cv2.imwrite(os.path.join(out_image_path, f'{name}.jpg'), main_img)
     
             
-def generate_yolo_batch(count, background_path):
-    print('hello worlds')
+def generate_yolo_batch():
+    print('hello wrold')
 
 
-generate_data_YOLO('test', 'Data Augmentation\\Backgrounds\\LOTUS_2.jpg', 'Data Augmentation', 'Data Augmentation')
+generate_data_YOLO('test', 'Data Augmentation\\Backgrounds\\LOTUS_2.jpg', '', 'Data Augmentation')

@@ -117,7 +117,7 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
     cv2.imwrite(os.path.join(out_image_path, f'{name}.jpg'), main_img)
     
             
-def generate_yolo_batch(count, background_path):
+def generate_yolo_batch():
     print('hello worlds')
 
 
