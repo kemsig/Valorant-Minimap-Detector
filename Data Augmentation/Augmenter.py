@@ -4,7 +4,7 @@ import datetime
 import random
 import os
 
-def write_to_image(main_image, asset_image_path, x_off=0, y_off=0):
+def write_to_image(main_image, asset_image_path, vari_x=0, vari_y=0, vari_w=0, vari_h=0):
     # Load the asset
     small_image = cv2.imread(asset_image_path, cv2.IMREAD_UNCHANGED)
 
@@ -13,8 +13,8 @@ def write_to_image(main_image, asset_image_path, x_off=0, y_off=0):
     s_height, s_width, _ = small_image.shape
 
     # Define the coordinates where you want to place the smaller image
-    x_offset = random.randint(0, m_width-s_width)  
-    y_offset = random.randint(0, m_height-s_height)  
+    x_offset = random.randint(vari_x, m_width-s_width -vari_w)  
+    y_offset = random.randint(vari_y, m_height-s_height -vari_h)  
 
     # Define the region of interest (ROI) on the main image
     roi = main_image[y_offset:y_offset+s_height, x_offset:x_offset+s_width]
@@ -25,17 +25,16 @@ def write_to_image(main_image, asset_image_path, x_off=0, y_off=0):
             roi[i, j] = small_image[i, j][:3]
     
     # return roi PIXEL details since they are bounding box info
-    return x_offset, y_offset, s_width, s_height
+    return x_offset-vari_x, y_offset-vari_y, s_width+vari_w, s_height+vari_h
     
 
-def get_rand_img(folder_name, root_path='Data Augmentation\\test_output'):
+def get_rand_img(folder_name, file_type, root_path='Data Augmentation\\test_output'):
     folder_path = os.path.join(root_path, folder_name)
-    png_files = [f for f in os.listdir(folder_path) if f.lower().endswith('.png')]
+    png_files = [f for f in os.listdir(folder_path) if f.lower().endswith(f'.{file_type}')]
     random_png = random.choice(png_files)
     return os.path.join(folder_path, random_png)
 
-
-def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
+def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path, bb_variance=True, variance_pixel_range=5):
     # open image
     main_img = cv2.imread(main_img_path)
     
@@ -74,21 +73,28 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
                     is_char = True
             
             # get a random image of the character
-            char_img_path = get_rand_img(char_choice)
+            char_img_path = get_rand_img(char_choice, 'png')
             print(char_img_path)
             
 
             '''
-            TODO: ADD BOUNDING BOX MANIPULATION
+            TODO: ADD BOUNDING BOX VARIANCE
             '''
-            x_center, y_center, norm_width, norm_height = write_to_image(
-                main_image=main_img,
-                asset_image_path= char_img_path,
-            )
-            # Display the resulting image
-            cv2.imshow('Result', main_img)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            
+            if bb_variance:
+                x_center, y_center, norm_width, norm_height = write_to_image(
+                    main_image=main_img,
+                    asset_image_path= char_img_path,
+                    vari_x= random.randint(0, variance_pixel_range),
+                    vari_y= random.randint(0, variance_pixel_range),
+                    vari_w= random.randint(0, variance_pixel_range),
+                    vari_h= random.randint(0, variance_pixel_range)
+                )
+            else:
+                x_center, y_center, norm_width, norm_height = write_to_image(
+                    main_image=main_img,
+                    asset_image_path= char_img_path,
+                )
 
             m_height, m_width, _ = main_img.shape
             def convert_to_yolo_format(x, y, width, height, image_width, image_height):
@@ -98,8 +104,7 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
                 height_norm = height / image_height
                 return x_norm, y_norm, width_norm, height_norm
             
-            # calculate label positions in yolo format
-            # <object-class-NUM> <x> <y> <width> <height>
+            # calculate label positions in yolo format - <object-class-NUM> <x> <y> <width> <height>
             x_center, y_center, norm_width, norm_height = convert_to_yolo_format(
                 x_center, y_center, norm_width, norm_height, m_width, m_height
             )
@@ -117,8 +122,29 @@ def generate_data_YOLO(name, main_img_path, out_image_path, out_label_path):
     cv2.imwrite(os.path.join(out_image_path, f'{name}.jpg'), main_img)
     
             
-def generate_yolo_batch(count, background_path):
+def generate_yolo_batch(count, name, background_path, output_path):
+    # create output folder
+    os.makedirs(output_path, exist_ok=True)
+    
+    # create label and image path + folders
+    out_label_path = os.path.join(output_path, 'labels')
+    out_image_path = os.path.join(output_path, 'images')
+    
+    os.makedirs(out_label_path, exist_ok=True)
+    os.makedirs(out_image_path, exist_ok=True)
+    
+    #maps = ['LOTUS']
+    for c in range(count):
+        # get random map image
+        map_img_path = get_rand_img('', 'jpg', root_path=background_path)
+        generate_data_YOLO(
+            name= f'{name}_{c}',
+            main_img_path= map_img_path,
+            out_image_path=out_image_path,
+            out_label_path=out_label_path
+        )
+    
     print('hello worlds')
 
-
-generate_data_YOLO('test', 'Data Augmentation\\Backgrounds\\LOTUS_2.jpg', 'Data Augmentation', 'Data Augmentation')
+generate_yolo_batch(3, 'i love bebe', 'Data Augmentation\\Backgrounds', 'Data Augmentation\\bebe')
+#generate_data_YOLO('test', 'Data Augmentation\\Backgrounds\\LOTUS_2.jpg', 'Data Augmentation', 'Data Augmentation')
